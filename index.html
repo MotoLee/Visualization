@@ -36,20 +36,22 @@
         .append("rect");
 
         console.log(dataset[0]);
-        console.log(dataset[0][0]);
+        console.log(dataset[0]["height"]);
+        console.log(dataset[0]["avg"]);
+        console.log(dataset[0]["name"]);
 
         rects.attr("x", function(d, i){
           return i * (w / dataset.length);
         })
         .attr("y", function(d){
-          return h - 5 * d[2];
+          return h - 5 * d["height"];
         })
         .attr("height", function(d){
-          return 5 * d[2];
+          return 5 * d["height"];
         })
         .attr("width", w / dataset.length - bar_padding)
         .attr("fill", function(d){
-          return "rgba(0, 0, " + d * 10 + ", 0.6)"; 
+          return "rgba(0, 0, " + d["avg"] * 500 + ", 0.6)"; 
         });
 
         // svg.selectAll("text")
