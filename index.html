@@ -66,11 +66,8 @@
       .attr("width", svg_w)
       .attr("height", svg_h);
 
-    // var height_bin = [];
-    // d3.csv("trim_baseball_data.csv", function(dataset) {
-      
-    function myFunction(dataset){
-      
+    d3.csv("trim_baseball_data.csv", function(dataset) {
+
       // /** Input Data **/
       // var dataset = [
       //   {name: "Tom Brown", height: 73, weight: 170, avg:0, HR: 0},
@@ -90,6 +87,14 @@
                  weight: d3.min(dataset, function(d){ return d["weight"]; }),
                  avg: d3.min(dataset, function(d){ return d["avg"]; }),
                  hr: d3.min(dataset, function(d){ return d["HR"]; })};
+          range_low = {height: Math.floor(min.height/10),
+                 weight: Math.floor(min.weight/5),
+                 avg: Math.floor(min.avg/0.05),
+                 hr: Math.floor(min.hr/50)};
+          range_high = {height: Math.ceil(max.height/10),
+                 weight: Math.celi(max.weight/5),
+                 avg: Math.celi(max.avg/0.05),
+                 hr: Math.ceil(max.hr/50)};
 
 
       var heightScale = d3.scale.linear()
@@ -104,6 +109,20 @@
           hrScale = d3.scale.linear()
             .domain([min.hr, max.hr])
             .range([0.1 * svg_w, 0.9 * svg_w]);
+
+      // Build bins
+      var height_bin = [], weight_bin = [], avg_bin = [], hr_bin = [];
+      for (var i = 0; i < dataset.length; i++) {
+        height_bin[(Math.floor(dataset[i]["height"]/10) - range_low.height)] = dataset[i]["height"];
+        weight_bin[(Math.floor(dataset[i]["weight"]/5) - range_low.height)] = dataset[i]["weight"];
+        avg_bin[(Math.floor(dataset[i]["avg"]/0.05) - range_low.avg)] = dataset[i]["avg"];
+        hr_bin[(Math.floor(dataset[i]["HR"]/50) - range_low.hr)] = dataset[i]["HR"];
+      }
+      console.log(height_bin);
+      console.log(weight_bin);
+      console.log(avg_bin);
+      console.log(hr_bin);
+
 
       /** Build bar chart **/
       var bar_w = svg_w / dataset.length, bar_padding = bar_w * 0.1, color = [];
@@ -247,14 +266,7 @@
       }
 
 
-    // });
-
-    var csvdata = [];
-    d3.csv("baseball_data.csv", function(d) {
-      csvdata[i] = [d.height, d.HR, d.avg, d.weight];
-      return csvdata;
-    }, function(error, data){ myFunction(data); });
-
+    });
 
     </script>
 
