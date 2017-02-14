@@ -66,8 +66,10 @@
       .attr("width", svg_w)
       .attr("height", svg_h);
 
-    var height_bin = [];
-    d3.csv("trim_baseball_data.csv", function(dataset) {
+    // var height_bin = [];
+    // d3.csv("trim_baseball_data.csv", function(dataset) {
+      
+    function myFunction(dataset){
       
       // /** Input Data **/
       // var dataset = [
@@ -88,6 +90,8 @@
                  weight: d3.min(dataset, function(d){ return d["weight"]; }),
                  avg: d3.min(dataset, function(d){ return d["avg"]; }),
                  hr: d3.min(dataset, function(d){ return d["HR"]; })};
+
+
       var heightScale = d3.scale.linear()
             .domain([min.height, max.height])
             .range([0.1 * svg_h, 0.85 * svg_h]),
@@ -243,7 +247,14 @@
       }
 
 
-    });
+    // });
+
+    var csvdata = [];
+    d3.csv("baseball_data.csv", function(d) {
+      csvdata[i] = [d.height, d.HR, d.avg, d.weight];
+      return csvdata;
+    }, function(error, data){ myFunction(data); });
+
 
     </script>
 
