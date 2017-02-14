@@ -87,8 +87,8 @@
                  weight: d3.min(dataset, function(d){ return d["weight"]; }),
                  avg: d3.min(dataset, function(d){ return d["avg"]; }),
                  hr: d3.min(dataset, function(d){ return d["HR"]; })};
-          range_low = {height: Math.floor(min.height/10),
-                 weight: Math.floor(min.weight/5),
+          range_low = {height: Math.floor(min.height/5),
+                 weight: Math.floor(min.weight/10),
                  avg: Math.floor(min.avg/0.05),
                  hr: Math.floor(min.hr/50)};
           // range_high = {height: Math.ceil(max.height/10),
@@ -113,10 +113,10 @@
       // Build bins
       var height_bin = [], weight_bin = [], avg_bin = [], hr_bin = [];
       for (var i = 0; i < dataset.length; i++) {
-        height_bin[(Math.floor(dataset[i]["height"]/10) - range_low.height)] = dataset[i]["height"];
-        weight_bin[(Math.floor(dataset[i]["weight"]/5) - range_low.height)] = dataset[i]["weight"];
-        avg_bin[(Math.floor(dataset[i]["avg"]/0.05) - range_low.avg)] = dataset[i]["avg"];
-        hr_bin[(Math.floor(dataset[i]["HR"]/50) - range_low.hr)] = dataset[i]["HR"];
+        height_bin[(Math.floor(dataset[i]["height"]/5) - range_low.height)].push(dataset[i]["height"]);
+        weight_bin[(Math.floor(dataset[i]["weight"]/10) - range_low.height)].push(dataset[i]["weight"]);
+        avg_bin[(Math.floor(dataset[i]["avg"]/0.05) - range_low.avg)].push(dataset[i]["avg"]);
+        hr_bin[(Math.floor(dataset[i]["HR"]/50) - range_low.hr)].push(dataset[i]["HR"]);
       }
       console.log(height_bin);
       console.log(weight_bin);
