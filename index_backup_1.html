@@ -218,43 +218,30 @@
         d3.selectAll(".player").text(" ");
       });
     
-      /** Plot function for Buttons **/
-      function plotHeight(){
+      /** Plot function for Buttons **/      
+      function plot(item){
         rects.attr("y", function(d){
-          return svg_h - heightScale(d["height"]);
+          if(item == "height")
+            return 0.9 * svg_h - heightScale(d["height"]);
+          else if(item == "weight")
+            return 0.9 * svg_h - weightScale(d["weight"]);
+          else if(item == "avg")
+            return 0.9 * svg_h - avgScale(d["avg"]);
+          else if(item == "HR")
+            return 0.9 * svg_h - hrScale(d["HR"]);
         })
         .attr("height", function(d){
-          return heightScale(d["height"]);
-        });
-      }
-      
-      function plotWeight(){
-        rects.attr("y", function(d){
-          return 0.9 * svg_h - weightScale(d["weight"]);
-        })
-        .attr("height", function(d){
-          return weightScale(d["weight"]);
+          if(item == "height")
+            return heightScale(d["height"]);
+          else if(item == "weight")
+            return weightScale(d["weight"]);
+          else if(item == "avg")
+            return avgScale(d["avg"]);
+          else if(item == "HR")
+            return hrScale(d["HR"]);
+          
         });  
       }
-      
-      function plotAvg(){
-        rects.attr("y", function(d){
-          return 0.9 * svg_h - avgScale(d["avg"]);
-        })
-        .attr("height", function(d){
-          return avgScale(d["avg"]);
-        })
-      }
-      
-      function plotHR(){
-        rects.attr("y", function(d){
-          return 0.9 * svg_h - hrScale(d["HR"]);
-        })
-        .attr("height", function(d){
-          return hrScale(d["HR"]);
-        })
-      }
-
 
     // });
 
@@ -263,10 +250,10 @@
     <div class = "display_block">
       <p class = "display_title">MENU</p>
       <div class = "display_button">
-        <button onclick="plotHeight()">Height</button>
-        <button onclick="plotWeight()">Weight</button>
-        <button onclick="plotAvg()">Average</button>
-        <button onclick="plotHR()">HR</button>
+        <button onclick="plot('height')">Height</button>
+        <button onclick="plot('weight')">Weight</button>
+        <button onclick="plot('avg')">Average</button>
+        <button onclick="plot('HR')">HR</button>
       </div>
       <p class = "display_title">Player</p>
       <div class = "display_context">
