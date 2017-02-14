@@ -230,7 +230,7 @@
       
       function plotWeight(){
         rects.attr("y", function(d){
-          return svg_h - weightScale(d["weight"]);
+          return 0.9 * svg_h - weightScale(d["weight"]);
         })
         .attr("height", function(d){
           return weightScale(d["weight"]);
@@ -239,7 +239,7 @@
       
       function plotAvg(){
         rects.attr("y", function(d){
-          return svg_h - avgScale(d["avg"]);
+          return 0.9 * svg_h - avgScale(d["avg"]);
         })
         .attr("height", function(d){
           return avgScale(d["avg"]);
@@ -248,7 +248,7 @@
       
       function plotHR(){
         rects.attr("y", function(d){
-          return svg_h - hrScale(d["HR"]);
+          return 0.9 * svg_h - hrScale(d["HR"]);
         })
         .attr("height", function(d){
           return hrScale(d["HR"]);
