@@ -66,18 +66,19 @@
       .attr("width", svg_w)
       .attr("height", svg_h);
 
-    var height_bin = [];
-    d3.csv("trim_baseball_data.csv", function(dataset) {
-      
-      // /** Input Data **/
-      // var dataset = [
-      //   {name: "Tom Brown", height: 73, weight: 170, avg:0, HR: 0},
-      //   {name: "Denny Lemaster", height: 73, weight: 182, avg:0.13, HR: 4},
-      //   {name: "Joe Nolan", height: 71, weight: 175, avg:0.263, HR: 27},
-      //   {name: "Denny Doyle", height: 69, weight: 175, avg:0.25, HR: 16},
-      //   {name: "Jose Cardenal", height: 70, weight: 150, avg:0.275, HR: 138},
-      //   {name: "Mike Ryan", height: 74, weight: 205, avg:0.193, HR:28}
-      //   ];
+    var player = d3.select("player");
+    // d3.csv("trim_baseball_data.csv", 
+    // function(dataset) {
+
+      /** Input Data **/
+      var dataset = [
+        {name: "Tom Brown", height: 73, weight: 170, avg:0, HR: 0},
+        {name: "Denny Lemaster", height: 73, weight: 182, avg:0.13, HR: 4},
+        {name: "Joe Nolan", height: 71, weight: 175, avg:0.263, HR: 27},
+        {name: "Denny Doyle", height: 69, weight: 175, avg:0.25, HR: 16},
+        {name: "Jose Cardenal", height: 70, weight: 150, avg:0.275, HR: 138},
+        {name: "Mike Ryan", height: 74, weight: 205, avg:0.193, HR:28}
+        ];
 
       /** Build scales: heightScale, weightScale, avgScale, hrScale **/
       var max = {height: d3.max(dataset, function(d){ return d["height"]; }),
@@ -191,7 +192,7 @@
            .text(d["name"])
            .attr("id","bar_label")
            .attr("x", (i + 0.5) * bar_w)
-           .attr("y", 0.8 * svg_h - heightScale(d["height"]))
+           .attr("y", 0.95 * svg_h)
            .style("text-anchor", "middle")
            .attr("font-family", "sans-serif")
            .attr("font-size", "16px")
@@ -255,7 +256,7 @@
       }
 
 
-    });
+    // });
 
     </script>
 
