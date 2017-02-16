@@ -257,6 +257,7 @@
                         index = (dataset[i]["HR"] - min.hr) / (max.hr - min.hr);
                         index = Math.floor((index * bin_number));
                         if(index == bin_number) index--;
+                        console.log(index);
                         binDataSet[index].push([dataset[i]["HR"], dataset[i]["name"]]);
                         binDataCount[index]++;
                     }
@@ -325,6 +326,9 @@
             
             // Event 1: Click
             rects.on("click", function(d, i){
+                
+                console.log(i);
+
                 svg.selectAll("#bar_label").remove();
                 svg.selectAll("#bar_chart").remove();
                 buildChart(1, csvDataSet, dataset.bin_num, dataset.field);
@@ -332,6 +336,8 @@
 
             // Event 2: Mouse over
             rects.on("mouseover", function(d, i){
+
+                console.log("over" + i);
 
                 d3.select(this)
                     .style("fill", "rgba(" + dataset.color[i][0] + ", " + dataset.color[i][1] + ", " 
@@ -374,6 +380,9 @@
 
             /** Event 3: Mouse out **/
             rects.on("mouseout", function(d, i) { 
+                
+                console.log("out" + i);
+
                 d3.select(this)
                     .style("fill", "rgba(" + dataset.color[i][0] + ", " + dataset.color[i][1] + ", " 
                         + dataset.color[i][2] + ", 0.6)")
