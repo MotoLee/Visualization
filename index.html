@@ -32,7 +32,6 @@
             width: 400px;
             padding: 0px;
             text-align: center;
-            border: 1px solid;
         }
         .display_title{
             width: 100%;
@@ -105,7 +104,7 @@
         console.log(binData.bin_num);
         bin_disp = svg.append("text")
             .text(binData.bin_num)
-            .attr("x", 0.1 * svg_w)
+            .attr("x", 0.9 * svg_w)
             .attr("y", 0.1 * svg_h)
             .style("text-anchor", "middle")
             .attr("font-family", "sans-serif")
