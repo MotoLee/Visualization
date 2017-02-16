@@ -86,16 +86,16 @@
         // Load data from csv file
         d3.csv("trim_baseball_data.csv", function(csvDataSet) {
 
-        // Psuedo-data
-        var csvDataSet = [];
-        for (var i = 0; i < 1000; i++) {
-            csvDataSet[i] = {
-                name: "Player " + i, height: 50 + Math.floor(Math.random()*50),
-                weight: 150 + Math.floor(Math.random()*50), 
-                avg: Math.floor(Math.random() * 400)/1000, 
-                HR: Math.floor(Math.random()*200)
-            };
-        }
+        // // Psuedo-data
+        // var csvDataSet = [];
+        // for (var i = 0; i < 1000; i++) {
+        //     csvDataSet[i] = {
+        //         name: "Player " + i, height: 50 + Math.floor(Math.random()*50),
+        //         weight: 150 + Math.floor(Math.random()*50), 
+        //         avg: Math.floor(Math.random() * 400)/1000, 
+        //         HR: Math.floor(Math.random()*200)
+        //     };
+        // }
         console.log(csvDataSet);
 
         // Find max and min value
