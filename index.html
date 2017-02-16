@@ -30,7 +30,7 @@
             margin: 20px;
             height: 600px;
             width: 400px;
-            padding: 0px;
+            padding-left: 600px;
             text-align: center;
         }
         .display_title{
@@ -67,12 +67,44 @@
 </head>
 <body>
 
-    <script type="text/javascript">
+    <div class = "display_block">
+        <p class = "display_title">MENU</p>
+        <div class = "display_button">
+            <br>
+            3 <input min="3" max="20" value="5" step="1" id="slider" name="range" onchange="slide(this.value)" type="range"> 20
+            <div id = "slider_current_value">5</div>
+            <button id = "height_button">Height</button>
+            <button id = "weight_button">Weight</button>
+            <button id = "avg_button">Average</button>
+            <button id = "hr_button">HR</button>
+        </div>
+        <div class = slider>
+            <div> CONTROLLER</div>
+            <div class = "slider_inside" id = "3"></div>
+            <div class = "slider_inside" id = "4"></div>
+            <div class = "slider_inside" id = "5"></div>
+            <div class = "slider_inside" id = "6"></div>
+            <div class = "slider_inside" id = "7"></div>
+            <div class = "slider_inside" id = "8"></div>
+            <div class = "slider_inside" id = "9"></div>
+            <div class = "slider_inside" id = "10"></div>
+            <div class = "slider_inside" id = "11"></div>
+            <div class = "slider_inside" id = "12"></div>
+            <div class = "slider_inside" id = "13"></div>
+            <div class = "slider_inside" id = "14"></div>
+            <div class = "slider_inside" id = "15"></div>
+            <div class = "slider_inside" id = "16"></div>
+            <div class = "slider_inside" id = "17"></div>
+            <div class = "slider_inside" id = "18"></div>
+        </div>
+        <p class = "display_title">Player</p>
+        <div class = "display_context">
+            <p class = "player" id = "player_name"> </p>
+            <p class = "player" id = "player_value"> </p>
+        </div>
+    </div>
 
-        // TODO:
-        //  (1) Fix Mouseover event problem
-        //  (2) Add Pie chart
-        //  (3) Add onClick event: transfer pie chart to bar chart
+    <script type="text/javascript">
 
         // Build a svg element
         var svg_w = 600, svg_h = 600;
@@ -81,12 +113,14 @@
         .attr("width", svg_w)
         .attr("height", svg_h);
 
-        var rects, paths, binData, csvDataSet = [];
+        var rects, paths, binData, csvDataSet;
 
-        // Load data from csv file
+        Load data from csv file
         d3.csv("baseball_data.csv", function(dataSet) {
 
-            for (var i = 0; i < dataSet.length; i++) {
+            // Psuedo-data
+            var csvDataSet = [];
+            for (var i = 0; i < dataset.length; i++) {
                 csvDataSet[i] = {
                     name: dataSet[i]["name"], 
                     height: dataSet[i]["height"], 
@@ -94,33 +128,35 @@
                     avg: dataSet[i]["avg"], 
                     hr: dataSet[i]["HR"],
                     hand: dataSet[i]["handedness"]
-                }
-            }
+                };
+            }            
+                    
 
-            console.log(csvDataSet);
-
-        });
-
-        console.log(csvDataSet);
-        console.log(csvDataSet[0]);
-        console.log(csvDataSet[0].height);
+        // // Psuedo-data
+        // var csvDataSet = [];
+        // for (var i = 0; i < 10; i++) {
+        //     csvDataSet[i] = {
+        //         name: "Player " + i, 
+        //         height: 50 + Math.floor(Math.random()*50),
+        //         weight: 150 + Math.floor(Math.random()*50), 
+        //         avg: Math.floor(Math.random() * 400)/1000, 
+        //         HR: Math.floor(Math.random()*200)
+        //     };
+        // }
 
         // Find max and min value
         var max = {
-            height: d3.max(csvDataSet, function(d){ console.log(d.height); return d.height; }),
-            weight: d3.max(csvDataSet, function(d){ console.log(d.weight); return d.weight; }),
-            avg: d3.max(csvDataSet, function(d){ console.log(d.avg); return d.avg; }),
-            hr: d3.max(csvDataSet, function(d){ console.log(d.hr); return d.hr; })
+            height: d3.max(csvDataSet, function(d){ return d.height; }),
+            weight: d3.max(csvDataSet, function(d){ return d.weight; }),
+            avg: d3.max(csvDataSet, function(d){ return d.avg; }),
+            hr: d3.max(csvDataSet, function(d){ return d.HR; })
         };
         var min = {
-            height: d3.min(csvDataSet, function(d){ return d["height"]; }),
-            weight: d3.min(csvDataSet, function(d){ return d["weight"]; }),
-            avg: d3.min(csvDataSet, function(d){ return d["avg"]; }),
-            hr: d3.min(csvDataSet, function(d){ return d["HR"]; })
+            height: d3.min(csvDataSet, function(d){ return d.height; }),
+            weight: d3.min(csvDataSet, function(d){ return d.weight; }),
+            avg: d3.min(csvDataSet, function(d){ return d.avg; }),
+            hr: d3.min(csvDataSet, function(d){ return d.HR; })
         };
-
-        console.log(max);
-        console.log(min);
 
         // Initializa a bar chart
         buildChart(0, csvDataSet, 5, "height");
@@ -137,8 +173,6 @@
             d3.select("#player_name").selectAll("div").remove();
 
             binData = buildBins(mode, dataset, bin_number, field);
-
-            console.log(binData);
 
             if(mode == 0)
                 buildBarChart(binData);
@@ -334,6 +368,8 @@
                     .append("text")
                     .text(binData.set[i][j][1]);
                 }
+
+                console.log(d3.selectAll("#player_value"));
             });
 
             /** Event 3: Mouse out **/
@@ -351,7 +387,7 @@
                 d3.selectAll(".player").text(" ");
             });
 
-        };
+        }
 
         // Build pie chart
         function buildPieChart(dataset){
@@ -457,63 +493,31 @@
       
         /** Plot function for Buttons **/      
         function plot(item){
-            console.log(item);
             buildChart(binData.chart_mode, csvDataSet, binData.bin_num, item);
         }
 
         // Slide function for slider bar
         function slide(value){
-            console.log(value);
             d3.select("#slider_current_value").text(value);
             buildChart(binData.chart_mode, csvDataSet, value, binData.field);
         }
 
         
-        var my_slider = d3.select(".slider");
-        my_slider.on("mouseover", function(){
-                var value = parseInt(d3.select(this).attr("id"));
-                console.log(value);
+        d3.selectAll(".slider_inside")
+            .on("mouseover", function(d,i){
+                buildChart(binData.chart_mode, csvDataSet, i, binData.field);
             });
 
 
-    </script>
+        d3.select("#height_button").on("click", function(){ plot("height"); });
+        d3.select("#weight_button").on("click", function(){ plot("height"); });
+        d3.select("#avg_button").on("click", function(){ plot("height"); });
+        d3.select("#hr_button").on("click", function(){ plot("height"); });
 
-    <div class = "display_block">
-        <p class = "display_title">MENU</p>
-        <div class = "display_button">
-            <br>
-            3 <input min="3" max="20" value="5" step="1" id="slider" name="range" onchange="slide(this.value)" type="range"> 20
-            <div id = "slider_current_value">5</div>
-            <button onclick="plot('height')">Height</button>
-            <button onclick="plot('weight')">Weight</button>
-            <button onclick="plot('avg')">Average</button>
-            <button onclick="plot('HR')">HR</button>
-        </div>
-        <div class = slider>
-            <div> CONTROLLER</div>
-            <div class = "slider_inside" id = "3"></div>
-            <div class = "slider_inside" id = "4"></div>
-            <div class = "slider_inside" id = "5"></div>
-            <div class = "slider_inside" id = "6"></div>
-            <div class = "slider_inside" id = "7"></div>
-            <div class = "slider_inside" id = "8"></div>
-            <div class = "slider_inside" id = "9"></div>
-            <div class = "slider_inside" id = "10"></div>
-            <div class = "slider_inside" id = "11"></div>
-            <div class = "slider_inside" id = "12"></div>
-            <div class = "slider_inside" id = "13"></div>
-            <div class = "slider_inside" id = "14"></div>
-            <div class = "slider_inside" id = "15"></div>
-            <div class = "slider_inside" id = "16"></div>
-            <div class = "slider_inside" id = "17"></div>
-            <div class = "slider_inside" id = "18"></div>
-        </div>
-        <p class = "display_title">Player</p>
-        <div class = "display_context">
-            <p class = "player" id = "player_name"> </p>
-            <p class = "player" id = "player_value"> </p>
-        </div>
-    </div>
+        });
+
+    </script>
+    
   
 </body>
 </html>
