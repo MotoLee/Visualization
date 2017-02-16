@@ -105,7 +105,7 @@
 
         // Find max and min value
         var max = {
-            height: d3.max(csvDataSet, function(d){ return d["height"]; }),
+            height: d3.max(csvDataSet, function(d){ console.log(d); return d["height"]; }),
             weight: d3.max(csvDataSet, function(d){ return d["weight"]; }),
             avg: d3.max(csvDataSet, function(d){ return d["avg"]; }),
             hr: d3.max(csvDataSet, function(d){ return d["HR"]; })
