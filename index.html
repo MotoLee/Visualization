@@ -81,24 +81,23 @@
         .attr("width", svg_w)
         .attr("height", svg_h);
 
-        var rects, paths, binData, csvDataSet;
+        var rects, paths, binData, csvDataSet = [];
 
         // Load data from csv file
         d3.csv("baseball_data.csv", function(dataSet) {
 
-        // // Psuedo-data
-        // var csvDataSet = [];
-        // for (var i = 0; i < 1000; i++) {
-        //     csvDataSet[i] = {
-        //         name: "Player " + i, height: 50 + Math.floor(Math.random()*50),
-        //         weight: 150 + Math.floor(Math.random()*50), 
-        //         avg: Math.floor(Math.random() * 400)/1000, 
-        //         HR: Math.floor(Math.random()*200)
-        //     };
-        // }
-        console.log(dataSet);
-        csvDataSet = dataSet;
-        console.log(csvDataSet);
+            for (var i = 0; i < dataSet.length; i++) {
+                csvDataSet[i] = {
+                    name: dataSet[i]["name"], 
+                    height: dataSet[i]["height"], 
+                    weight: dataSet[i]["weight"], 
+                    avg: dataSet[i]["avg"], 
+                    HR: dataSet[i]["HR"],
+                    hand: dataSet[i]["handedness"]
+                }
+            }
+            
+            console.log(csvDataSet);
 
         });
 
