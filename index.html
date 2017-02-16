@@ -81,10 +81,10 @@
         .attr("width", svg_w)
         .attr("height", svg_h);
 
-        var rects, paths, binData;
+        var rects, paths, binData, csvDataSet;
 
         // Load data from csv file
-        d3.csv("baseball_data.csv", function(csvDataSet) {
+        d3.csv("baseball_data.csv", function(dataSet) {
 
         // // Psuedo-data
         // var csvDataSet = [];
@@ -96,8 +96,9 @@
         //         HR: Math.floor(Math.random()*200)
         //     };
         // }
+        csvDataSet = dataset
         console.log(csvDataSet);
-        
+
         });
 
         // Find max and min value
