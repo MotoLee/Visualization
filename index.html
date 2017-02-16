@@ -505,14 +505,14 @@
         
         d3.selectAll(".slider_inside")
             .on("mouseover", function(d,i){
-                buildChart(binData.chart_mode, csvDataSet, i, binData.field);
+                buildChart(binData.chart_mode, csvDataSet, i+3, binData.field);
             });
 
 
         d3.select("#height_button").on("click", function(){ plot("height"); });
-        d3.select("#weight_button").on("click", function(){ plot("height"); });
-        d3.select("#avg_button").on("click", function(){ plot("height"); });
-        d3.select("#hr_button").on("click", function(){ plot("height"); });
+        d3.select("#weight_button").on("click", function(){ plot("weight"); });
+        d3.select("#avg_button").on("click", function(){ plot("avg"); });
+        d3.select("#hr_button").on("click", function(){ plot("HR"); });
 
         });
 
