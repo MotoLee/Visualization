@@ -92,7 +92,7 @@
                     height: dataSet[i]["height"], 
                     weight: dataSet[i]["weight"], 
                     avg: dataSet[i]["avg"], 
-                    HR: dataSet[i]["HR"],
+                    hr: dataSet[i]["HR"],
                     hand: dataSet[i]["handedness"]
                 }
             }
@@ -102,13 +102,15 @@
         });
 
         console.log(csvDataSet);
+        console.log(csvDataSet[0]);
+        console.log(csvDataSet[0].height);
 
         // Find max and min value
         var max = {
-            height: d3.max(csvDataSet, function(d){ console.log(d); return d["height"]; }),
-            weight: d3.max(csvDataSet, function(d){ return d["weight"]; }),
-            avg: d3.max(csvDataSet, function(d){ return d["avg"]; }),
-            hr: d3.max(csvDataSet, function(d){ return d["HR"]; })
+            height: d3.max(csvDataSet, function(d){ console.log(d.height); return d.height; }),
+            weight: d3.max(csvDataSet, function(d){ console.log(d.weight); return d.weight; }),
+            avg: d3.max(csvDataSet, function(d){ console.log(d.avg); return d.avg; }),
+            hr: d3.max(csvDataSet, function(d){ console.log(d.hr); return d.hr; })
         };
         var min = {
             height: d3.min(csvDataSet, function(d){ return d["height"]; }),
