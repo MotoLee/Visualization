@@ -337,7 +337,7 @@
                         + ", " + dataset.color[i][2] + ", 1)");
 
                 // Update player's statistic
-                for (var j = 0; j < d && j < 10; j++) {
+                for (var j = 0; j < d && j < 11; j++) {
                     d3.select("#player_value")
                     .append("div")
                     .attr("id", "#player_value_item")
@@ -349,6 +349,18 @@
                     .attr("id", "#player_value_name")
                     .append("text")
                     .text(binData.set[i][j][1]);
+
+                    if(j == 10){
+                        d3.select("#player_value")
+                        .append("div")
+                        .append("text")
+                        .text(":");
+
+                        d3.select("#player_name")
+                        .append("div")
+                        .append("text")
+                        .text(":");
+                    }
                 }
             });
 
@@ -442,7 +454,7 @@
 
                 d3.select("#player_value").selectAll("div").remove();
                 d3.select("#player_name").selectAll("div").remove();
-                for (var j = 0; j < d.data && j < 10; j++) {
+                for (var j = 0; j < d.data && j < 11; j++) {
                     d3.select("#player_value")
                     .append("div")
                     .append("text")
@@ -452,6 +464,18 @@
                     .append("div")
                     .append("text")
                     .text(binData.set[i][j][1]);
+
+                    if(j == 10){
+                        d3.select("#player_value")
+                        .append("div")
+                        .append("text")
+                        .text(":");
+
+                        d3.select("#player_name")
+                        .append("div")
+                        .append("text")
+                        .text(":");
+                    }
                 }
 
             });
