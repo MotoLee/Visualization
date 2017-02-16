@@ -96,7 +96,7 @@
                     hand: dataSet[i]["handedness"]
                 }
             }
-            
+
             console.log(csvDataSet);
 
         });
@@ -117,6 +117,9 @@
             hr: d3.min(csvDataSet, function(d){ return d["HR"]; })
         };
 
+        console.log(max);
+        console.log(min);
+
         // Initializa a bar chart
         buildChart(0, csvDataSet, 5, "height");
 
@@ -132,6 +135,8 @@
             d3.select("#player_name").selectAll("div").remove();
 
             binData = buildBins(mode, dataset, bin_number, field);
+
+            console.log(binData);
 
             if(mode == 0)
                 buildBarChart(binData);
@@ -327,8 +332,6 @@
                     .append("text")
                     .text(binData.set[i][j][1]);
                 }
-
-                console.log(d3.selectAll("#player_value"));
             });
 
             /** Event 3: Mouse out **/
