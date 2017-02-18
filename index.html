@@ -46,15 +46,17 @@
         .slider{
             border: 1px solid;
             width: 360px;
-            height: 70px;
+            height: 150px;
             padding: 0px;
+            margin: 0px;
+            background-image: url("gesture.png");
         }
         .slider_inside{
             margin: 0;
             padding: 0;
             display: inline-block; 
             width: 17px;
-            height: 50px;
+            height: 150px;
             padding: 0px;
         }
         .player{
@@ -69,7 +71,8 @@
 <body>
     
     <!-- Pre-process CSV data into a variable in JavaScript file -->
-    <script src="baseball_data.js"></script>
+    <!-- <script src="baseball_data.js"></script> -->
+    <script src="import_csv.js"></script>
 
     <!-- Visualize input data -->
     <script type="text/javascript">
@@ -81,7 +84,7 @@
         .attr("width", svg_w)
         .attr("height", svg_h);
 
-        var rects, xAxis, paths, binData, csvDataSet, bin_disp;
+        var rects, xAxis, paths, binData, bin_disp;
         
         // Find max and min value
         var max = {
@@ -532,7 +535,6 @@
             <div>
         </div>
         <div class = slider>
-            <div> CONTROLLER</div>
             <div class = "slider_inside" onmouseover="javascript:mySlider(3)"></div>
             <div class = "slider_inside" onmouseover="javascript:mySlider(4)" ></div>
             <div class = "slider_inside" onmouseover="javascript:mySlider(5)" ></div>
