@@ -1,1 +1,1 @@
-This is the first mini-project for CSE564 - Visualization course.
+This is the first mini-project for the course CSE564 - Visualization.
