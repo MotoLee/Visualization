@@ -1,1 +1,1 @@
-This is the first mini-project for the course CSE564 - Visualization.
+link: https://motolee.github.io/Visualization-hw1-d3-warmup
