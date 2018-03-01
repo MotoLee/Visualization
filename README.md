@@ -1,1 +1,1 @@
-link: https://motolee.github.io/Visualization-hw1-d3-warmup
+link: https://motolee.github.io/Visualization-HW1-D3-warmup/
